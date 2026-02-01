@@ -29,6 +29,7 @@
       text-align: center;
       max-width: 90%;
       width: 400px;
+      position: relative;
     }
 
     h1 {
@@ -44,7 +45,7 @@
 
     .buttons {
       position: relative;
-      height: 80px;
+      height: 140px;
     }
 
     button {
@@ -53,14 +54,14 @@
       border-radius: 30px;
       border: none;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.15s ease;
       position: absolute;
     }
 
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      left: 30%;
+      left: 20%;
     }
 
     #yesBtn:hover {
@@ -91,12 +92,6 @@
       max-width: 300px;
       border-radius: 15px;
     }
-
-    @media (max-width: 480px) {
-      .buttons {
-        height: 120px;
-      }
-    }
   </style>
 </head>
 
@@ -125,19 +120,24 @@
     const successMsg = document.getElementById("successMsg");
     const gifBox = document.getElementById("gifBox");
 
-    noBtn.addEventListener("mouseenter", () => {
-      const btnRect = noBtn.getBoundingClientRect();
-      const padding = 10;
+    function moveNoButton() {
+      const rect = noBtn.getBoundingClientRect();
+      const padding = 20;
 
-      const maxX = window.innerWidth - btnRect.width - padding;
-      const maxY = window.innerHeight - btnRect.height - padding;
+      const maxX = window.innerWidth - rect.width - padding;
+      const maxY = window.innerHeight - rect.height - padding;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-    });
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Runs whenever user tries to approach the button
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("mousemove", moveNoButton);
+    noBtn.addEventListener("mousedown", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
       successMsg.style.display = "block";
