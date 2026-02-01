@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine? ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffdee9, #ffc3a0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #444;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      left: 30%;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: #333;
+      left: 55%;
+    }
+
+    .success {
+      display: none;
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    .gif-container {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .gif-container img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 15px;
+    }
+
+    @media (max-width: 480px) {
+      .buttons {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <p>I promise chocolates, laughs, and lots of smiles 😄</p>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 🙈</button>
+    </div>
+
+    <div class="success" id="successMsg">
+      Yay! ❤️ I knew you’d say yes! 🌹
+    </div>
+
+    <div class="gif-container" id="gifBox">
+      <img src="https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif" alt="Romantic GIF" />
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const successMsg = document.getElementById("successMsg");
+    const gifBox = document.getElementById("gifBox");
+
+    noBtn.addEventListener("mouseenter", () => {
+      const btnRect = noBtn.getBoundingClientRect();
+      const padding = 10;
+
+      const maxX = window.innerWidth - btnRect.width - padding;
+      const maxY = window.innerHeight - btnRect.height - padding;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      successMsg.style.display = "block";
+      gifBox.style.display = "block";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+  </script>
+</body>
+</html>
